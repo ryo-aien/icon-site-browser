@@ -3,18 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="アイコン素材サイトを検索・絞り込みし、右ペインでプレビューできるランチャーです。">
-  <title>Icon Site Browser</title>
+  <meta name="description" content="アイコン素材サイトとWebデザイン参考サイトを検索・絞り込みし、右ペインでプレビューできるランチャーです。">
+  <title>Resource Site Browser</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mode-switcher.css">
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
       <div>
         <p class="eyebrow">ICON DIRECTORY</p>
-        <h1>Icon Site Browser</h1>
+        <h1>Resource Site Browser</h1>
       </div>
+
+      <nav class="resource-tabs" aria-label="リンク集の種類">
+        <button class="resource-tab is-active" type="button" data-resource-mode="icons" aria-pressed="true">アイコン</button>
+        <button class="resource-tab" type="button" data-resource-mode="design" aria-pressed="false">サイトデザイン</button>
+      </nav>
+
       <div class="topbar-actions">
         <button id="favoritesOnlyButton" class="button button-ghost" type="button" aria-pressed="false">★ お気に入り</button>
         <button id="themeButton" class="button button-ghost" type="button" aria-label="テーマを切り替える">☾</button>
@@ -22,7 +29,7 @@
     </header>
 
     <main class="workspace">
-      <aside class="sidebar" aria-label="アイコンサイト一覧">
+      <aside class="sidebar" aria-label="サイト一覧">
         <div class="controls">
           <label class="search-box">
             <span class="sr-only">サイトを検索</span>
@@ -42,7 +49,7 @@
           <div class="preview-title-wrap">
             <span id="previewStatus" class="status-dot" aria-hidden="true"></span>
             <div>
-              <strong id="previewTitle">サイトを選択してください</strong>
+              <strong id="previewTitle">アイコンサイトを選択してください</strong>
               <span id="previewUrl" class="preview-url"></span>
             </div>
           </div>
@@ -55,7 +62,7 @@
         <div class="preview-stage">
           <div id="emptyState" class="empty-state">
             <div class="empty-icon">◇</div>
-            <h2>左の一覧からサイトを選択</h2>
+            <h2>左の一覧からアイコンサイトを選択</h2>
             <p>クリックすると、ここにサイトのプレビューを表示します。</p>
           </div>
 
@@ -66,7 +73,7 @@
             </div>
             <iframe
               id="previewFrame"
-              title="選択したアイコンサイトのプレビュー"
+              title="選択したサイトのプレビュー"
               loading="eager"
               referrerpolicy="strict-origin-when-cross-origin"
               sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-downloads"
@@ -78,5 +85,6 @@
   </div>
   <script src="script.js"></script>
   <script src="extra-sites.js"></script>
+  <script src="design-sites.js"></script>
 </body>
 </html>
