@@ -1,3 +1,4 @@
+// Add official-company/design-system sources that are not in the base list yet.
 sites.push(
   {
     name: 'SF Symbols',
@@ -31,4 +32,33 @@ sites.push(
   }
 );
 
+// Existing entries that are maintained/published by the product or design-system owner.
+const officialSiteNames = new Set([
+  'Material Symbols',
+  'Google Fonts Icons',
+  'Bootstrap Icons',
+  'Heroicons',
+  'Ionicons',
+  'Octicons',
+  'Radix Icons',
+  'Ant Design Icons',
+  'Carbon Icons',
+  'Fluent UI Icons',
+  'IconPark',
+  'CoreUI Icons'
+]);
+
+for (const site of sites) {
+  const isOfficial = officialSiteNames.has(site.name) || site.description.includes('公式');
+  if (isOfficial && !site.categories.includes('公式')) {
+    site.categories.push('公式');
+  }
+}
+
+// Put the official filter near the front of the common filters.
+if (!preferredCategories.includes('公式')) {
+  preferredCategories.splice(1, 0, '公式');
+}
+
+renderFilters();
 renderSites();
