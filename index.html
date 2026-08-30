@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="アイコン素材サイトを検索・絞り込みし、右ペインでプレビューできるランチャーです。">
+  <title>Icon Site Browser</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">ICON DIRECTORY</p>
+        <h1>Icon Site Browser</h1>
+      </div>
+      <div class="topbar-actions">
+        <button id="favoritesOnlyButton" class="button button-ghost" type="button" aria-pressed="false">★ お気に入り</button>
+        <button id="themeButton" class="button button-ghost" type="button" aria-label="テーマを切り替える">☾</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="sidebar" aria-label="アイコンサイト一覧">
+        <div class="controls">
+          <label class="search-box">
+            <span class="sr-only">サイトを検索</span>
+            <input id="searchInput" type="search" placeholder="サイト名・特徴で検索…" autocomplete="off">
+          </label>
+          <div id="categoryFilters" class="filters" aria-label="カテゴリで絞り込み"></div>
+          <div class="result-row">
+            <span id="resultCount">0 sites</span>
+            <button id="clearButton" class="text-button" type="button">条件をクリア</button>
+          </div>
+        </div>
+        <div id="siteList" class="site-list"></div>
+      </aside>
+
+      <section class="preview-panel" aria-label="サイトプレビュー">
+        <div class="preview-toolbar">
+          <div class="preview-title-wrap">
+            <span id="previewStatus" class="status-dot" aria-hidden="true"></span>
+            <div>
+              <strong id="previewTitle">サイトを選択してください</strong>
+              <span id="previewUrl" class="preview-url"></span>
+            </div>
+          </div>
+          <div class="preview-actions">
+            <button id="reloadButton" class="button button-ghost" type="button" disabled>再読み込み</button>
+            <a id="openExternalLink" class="button button-primary is-disabled" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">新しいタブで開く ↗</a>
+          </div>
+        </div>
+
+        <div class="preview-stage">
+          <div id="emptyState" class="empty-state">
+            <div class="empty-icon">◇</div>
+            <h2>左の一覧からサイトを選択</h2>
+            <p>クリックすると、ここにサイトのプレビューを表示します。</p>
+          </div>
+
+          <div id="frameWrap" class="frame-wrap" hidden>
+            <div class="embed-note">
+              <span>埋め込みを禁止しているサイトはプレビューできません。</span>
+              <a id="embedFallbackLink" href="#" target="_blank" rel="noopener noreferrer">表示されない場合はこちら ↗</a>
+            </div>
+            <iframe
+              id="previewFrame"
+              title="選択したアイコンサイトのプレビュー"
+              loading="eager"
+              referrerpolicy="strict-origin-when-cross-origin"
+              sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-downloads"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
