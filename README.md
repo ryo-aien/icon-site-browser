@@ -16,6 +16,8 @@
 - `extra-sites.js`
 - `design-sites.js`
 - `guideline-sites.js`
+- `design-guideline.html` — 43の公開デザインシステム／ガイドラインを統合した独自Webデザイン定義書
+- `design-guideline.css`
 
 ## GitHub Pages
 
