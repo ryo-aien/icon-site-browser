@@ -1,12 +1,21 @@
-# Icon Site Browser
+# Resource Site Browser
 
-アイコン素材サイトを検索・カテゴリ絞り込みし、右側の iframe でプレビューする静的Webサイトです。
+アイコン素材、Webデザイン参考サイト、デザイン定義書を検索・カテゴリ絞り込みし、右側の iframe でプレビューする静的Webサイトです。
+
+## Resource modes
+
+- アイコン
+- サイトデザイン
+- デザイン定義書
 
 ## Files
 
 - `index.html`
 - `styles.css`
 - `script.js`
+- `extra-sites.js`
+- `design-sites.js`
+- `guideline-sites.js`
 
 ## GitHub Pages
 
