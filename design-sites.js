@@ -46,14 +46,42 @@ const designSites = [
 const designCategories = ['すべて', 'SaaS', 'Webアプリ', 'Dashboard', 'UIパターン', 'UXフロー', 'LP', 'Webサイト', '日本', '海外', 'EC', 'タイポグラフィ', 'アワード'];
 const modeState = { current: 'icons' };
 
+const modeConfig = {
+  icons: {
+    sites: iconSites,
+    categories: iconCategories,
+    eyebrow: 'ICON DIRECTORY',
+    searchPlaceholder: 'サイト名・特徴で検索…',
+    previewPrompt: 'アイコンサイトを選択してください',
+    emptyTitle: '左の一覧からアイコンサイトを選択'
+  },
+  design: {
+    sites: designSites,
+    categories: designCategories,
+    eyebrow: 'WEB DESIGN DIRECTORY',
+    searchPlaceholder: 'デザインサイト名・用途で検索…',
+    previewPrompt: 'デザインサイトを選択してください',
+    emptyTitle: '左の一覧からデザインサイトを選択'
+  },
+  guidelines: {
+    sites: guidelineSites,
+    categories: guidelineCategories,
+    eyebrow: 'DESIGN GUIDELINE DIRECTORY',
+    searchPlaceholder: '定義書名・企業名・特徴で検索…',
+    previewPrompt: 'デザイン定義書を選択してください',
+    emptyTitle: '左の一覧からデザイン定義書を選択'
+  }
+};
+
 function resetPreviewForMode() {
+  const config = modeConfig[modeState.current];
   state.selectedUrl = null;
   state.query = '';
   state.category = 'すべて';
   state.favoritesOnly = false;
   els.searchInput.value = '';
   els.favoritesOnlyButton.setAttribute('aria-pressed', 'false');
-  els.previewTitle.textContent = modeState.current === 'icons' ? 'アイコンサイトを選択してください' : 'デザインサイトを選択してください';
+  els.previewTitle.textContent = config.previewPrompt;
   els.previewUrl.textContent = '';
   els.previewStatus.classList.remove('is-active');
   els.openExternalLink.href = '#';
@@ -65,19 +93,17 @@ function resetPreviewForMode() {
   els.emptyState.hidden = false;
   const emptyTitle = els.emptyState.querySelector('h2');
   const emptyText = els.emptyState.querySelector('p');
-  if (emptyTitle) emptyTitle.textContent = modeState.current === 'icons' ? '左の一覧からアイコンサイトを選択' : '左の一覧からデザインサイトを選択';
+  if (emptyTitle) emptyTitle.textContent = config.emptyTitle;
   if (emptyText) emptyText.textContent = 'クリックすると、ここにサイトのプレビューを表示します。';
 }
 
 function switchResourceMode(mode) {
-  if (!['icons', 'design'].includes(mode)) return;
+  const config = modeConfig[mode];
+  if (!config) return;
   modeState.current = mode;
 
-  const nextSites = mode === 'icons' ? iconSites : designSites;
-  const nextCategories = mode === 'icons' ? iconCategories : designCategories;
-
-  sites.splice(0, sites.length, ...nextSites);
-  preferredCategories.splice(0, preferredCategories.length, ...nextCategories);
+  sites.splice(0, sites.length, ...config.sites);
+  preferredCategories.splice(0, preferredCategories.length, ...config.categories);
 
   document.querySelectorAll('[data-resource-mode]').forEach(button => {
     const active = button.dataset.resourceMode === mode;
@@ -86,10 +112,9 @@ function switchResourceMode(mode) {
   });
 
   const eyebrow = document.querySelector('.eyebrow');
-  if (eyebrow) eyebrow.textContent = mode === 'icons' ? 'ICON DIRECTORY' : 'WEB DESIGN DIRECTORY';
+  if (eyebrow) eyebrow.textContent = config.eyebrow;
 
-  const searchInput = els.searchInput;
-  searchInput.placeholder = mode === 'icons' ? 'サイト名・特徴で検索…' : 'デザインサイト名・用途で検索…';
+  els.searchInput.placeholder = config.searchPlaceholder;
 
   resetPreviewForMode();
   renderFilters();
