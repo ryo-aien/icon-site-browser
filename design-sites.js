@@ -44,6 +44,8 @@ const designSites = [
 ];
 
 const designCategories = ['すべて', 'SaaS', 'Webアプリ', 'Dashboard', 'UIパターン', 'UXフロー', 'LP', 'Webサイト', '日本', '海外', 'EC', 'タイポグラフィ', 'アワード'];
+const loadedGuidelineSites = typeof guidelineSites === 'undefined' ? [] : guidelineSites;
+const loadedGuidelineCategories = typeof guidelineCategories === 'undefined' ? ['すべて'] : guidelineCategories;
 const modeState = { current: 'icons' };
 
 const modeConfig = {
@@ -64,8 +66,8 @@ const modeConfig = {
     emptyTitle: '左の一覧からデザインサイトを選択'
   },
   guidelines: {
-    sites: guidelineSites,
-    categories: guidelineCategories,
+    sites: loadedGuidelineSites,
+    categories: loadedGuidelineCategories,
     eyebrow: 'DESIGN GUIDELINE DIRECTORY',
     searchPlaceholder: '定義書名・企業名・特徴で検索…',
     previewPrompt: 'デザイン定義書を選択してください',
