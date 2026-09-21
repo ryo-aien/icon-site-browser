@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="国内外の公開デザインシステム・Webガイドラインの長所を統合した、実装可能な独自Webデザイン定義書。">
+  <title>Unified Web Design Standard — 独自Webデザイン定義書</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="design-guideline.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">本文へスキップ</a>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="kicker">Unified Web Design Standard</p>
+      <h1>独自Webデザイン定義書</h1>
+      <p class="hero-lead">
+        デザイン原則、ブランド、UI、UX、アクセシビリティ、ライティング、レスポンシブ、
+        デザイントークン、実装、テスト、運用までを一つの判断基準に統合した実務標準。
+        「綺麗に作る」ためではなく、誰が作っても同じ品質で意思決定できることを目的とする。
+      </p>
+      <div class="hero-meta">
+        <span class="pill">Version 1.0.0</span>
+        <span class="pill">WCAG 2.2 AA baseline</span>
+        <span class="pill">Design → Code → QA → Operations</span>
+        <span class="pill">Living Standard</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="ページ内目次">
+      <strong>Contents</strong>
+      <div class="toc-list">
+        <a href="#purpose">1. 目的と適用範囲</a>
+        <a href="#principles">2. デザイン原則</a>
+        <a href="#decision">3. 判断優先順位</a>
+        <a href="#foundation">4. Foundations</a>
+        <a href="#layout">5. レイアウト</a>
+        <a href="#responsive">6. レスポンシブ</a>
+        <a href="#components">7. コンポーネント</a>
+        <a href="#patterns">8. UXパターン</a>
+        <a href="#forms">9. フォーム</a>
+        <a href="#content">10. UXライティング</a>
+        <a href="#accessibility">11. アクセシビリティ</a>
+        <a href="#interaction">12. インタラクション</a>
+        <a href="#data">13. データ表現</a>
+        <a href="#implementation">14. 実装標準</a>
+        <a href="#quality">15. 品質保証</a>
+        <a href="#governance">16. 運用・ガバナンス</a>
+        <a href="#definition-of-done">17. Definition of Done</a>
+        <a href="#component-template">18. コンポーネント仕様書テンプレ</a>
+        <a href="#source-matrix">19. 43資料の統合観点</a>
+      </div>
+    </nav>
+
+    <main id="main">
+      <section id="purpose">
+        <h2>1. 目的と適用範囲</h2>
+        <p class="lead">
+          本定義書は、コーポレートサイト、サービスサイト、SaaS、管理画面、業務アプリ、LPなどのWeb UIを、
+          ブランド・ユーザビリティ・アクセシビリティ・実装品質の観点から一貫して設計するための共通標準である。
+        </p>
+
+        <div class="rule">
+          <strong>この定義書の最重要ルール</strong>
+          ルールそのものを守ることより、ユーザーの目的達成を優先する。ただし、アクセシビリティ、安全性、
+          法令・規約、データ保護に関わる要件は「好み」で例外化しない。
+        </div>
+
+        <h3>規範レベル</h3>
+        <p>
+          <span class="status must">MUST</span> 必須。原則として例外不可。
+          <span class="status should">SHOULD</span> 推奨。合理的な理由があれば例外可。
+          <span class="status may">MAY</span> 任意。文脈に応じて採用する。
+        </p>
+
+        <h3>対象者</h3>
+        <div class="grid">
+          <div class="card"><h4>Designer</h4><p>原則・トークン・パターン・コンポーネントを使い、独自UIの乱立を防ぐ。</p></div>
+          <div class="card"><h4>Engineer</h4><p>セマンティックHTML、Design Tokens、状態管理、アクセシビリティを実装契約として扱う。</p></div>
+          <div class="card"><h4>PM / PO</h4><p>見た目ではなく、ユーザー課題・情報優先度・エラー回復性を仕様として判断する。</p></div>
+          <div class="card"><h4>Writer / Marketer</h4><p>UIテキスト、見出し、CTA、エラー、ヘルプを同じVoice & Toneで設計する。</p></div>
+        </div>
+      </section>
+
+      <section id="principles">
+        <h2>2. デザイン原則</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>01. Task First</h3>
+            <p>ユーザーの目的達成を最短にする。装飾、社内都合、技術都合をユーザーのタスクより上に置かない。</p>
+          </article>
+          <article class="card">
+            <h3>02. Clarity over Cleverness</h3>
+            <p>賢そうなUIより、初見で意味が分かるUIを選ぶ。慣習的な表現を意図なく崩さない。</p>
+          </article>
+          <article class="card">
+            <h3>03. Accessible by Default</h3>
+            <p>アクセシビリティは後工程の検査ではなく、設計・コンポーネント・実装の初期条件にする。</p>
+          </article>
+          <article class="card">
+            <h3>04. Consistent, not Uniform</h3>
+            <p>同じ意味には同じ表現を使う。一方、異なる文脈を無理に一つのコンポーネントへ押し込めない。</p>
+          </article>
+          <article class="card">
+            <h3>05. Content is Interface</h3>
+            <p>ラベル、説明、エラー、見出し、空状態までUIの一部として設計する。言葉を最後に埋めない。</p>
+          </article>
+          <article class="card">
+            <h3>06. Responsive by Meaning</h3>
+            <p>画面幅だけで縮小しない。情報の優先度、入力方法、タスク量に応じて再配置・省略・段階表示する。</p>
+          </article>
+          <article class="card">
+            <h3>07. Evidence Evolves the System</h3>
+            <p>定義書は完成品ではない。ユーザー調査、障害、問い合わせ、分析、実装知見に基づき更新する。</p>
+          </article>
+          <article class="card">
+            <h3>08. One Source of Truth</h3>
+            <p>色・余白・文字・状態・コンポーネント仕様をDesign Tokensと実装コードで同期し、二重管理を減らす。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="decision">
+        <h2>3. 判断優先順位</h2>
+        <p>設計上のルールが衝突した場合、次の順序で判断する。</p>
+        <ol class="priority">
+          <li><div><strong>安全・法令・プライバシー・アクセシビリティ</strong><br>利用不能や誤操作、権利侵害を防ぐ。</div></li>
+          <li><div><strong>ユーザーの目的達成と情報理解</strong><br>完了率、理解、回復性、負荷を優先する。</div></li>
+          <li><div><strong>一貫性と予測可能性</strong><br>既存の慣習・システム・用語との整合を取る。</div></li>
+          <li><div><strong>運用性・保守性・性能</strong><br>継続して品質を維持できる構造を選ぶ。</div></li>
+          <li><div><strong>ブランド表現</strong><br>意味・操作性を壊さない範囲で個性を出す。</div></li>
+          <li><div><strong>新規性・装飾性</strong><br>上記を満たした後に採用する。</div></li>
+        </ol>
+      </section>
+
+      <section id="foundation">
+        <h2>4. Foundations</h2>
+        <p class="lead">見た目の数値ではなく「意味」を先に定義し、Primitive Token → Semantic Token → Component Tokenの3層で管理する。</p>
+
+        <h3>4.1 Color</h3>
+        <table>
+          <thead><tr><th>Token</th><th>用途</th><th>ルール</th></tr></thead>
+          <tbody>
+            <tr><td><code>color.text.primary</code></td><td>本文・主要ラベル</td><td>背景とのコントラストを最優先。</td></tr>
+            <tr><td><code>color.text.secondary</code></td><td>補助説明</td><td>重要情報には使わない。</td></tr>
+            <tr><td><code>color.action.primary</code></td><td>主操作</td><td>同一画面で乱用しない。</td></tr>
+            <tr><td><code>color.status.success</code></td><td>成功</td><td>色だけで意味を伝えない。</td></tr>
+            <tr><td><code>color.status.warning</code></td><td>注意</td><td>確認が必要な状態。</td></tr>
+            <tr><td><code>color.status.danger</code></td><td>エラー・破壊操作</td><td>通常操作の強調色として使わない。</td></tr>
+          </tbody>
+        </table>
+        <ul>
+          <li><span class="status must">MUST</span> 色名ではなく役割名でSemantic Tokenを付ける。</li>
+          <li><span class="status must">MUST</span> 状態を色だけで区別しない。ラベル、アイコン、形状を併用する。</li>
+          <li><span class="status should">SHOULD</span> Light / Dark / High Contrastなどテーマ差をTokenで吸収する。</li>
+        </ul>
+
+        <h3>4.2 Typography</h3>
+        <table>
+          <thead><tr><th>Role</th><th>目安</th><th>用途</th></tr></thead>
+          <tbody>
+            <tr><td>Display</td><td>40–64px / 1.15</td><td>限定的なヒーロー表現</td></tr>
+            <tr><td>Heading 1</td><td>32–40px / 1.25</td><td>ページ主題</td></tr>
+            <tr><td>Heading 2</td><td>24–32px / 1.3</td><td>主要セクション</td></tr>
+            <tr><td>Heading 3</td><td>20–24px / 1.4</td><td>下位セクション</td></tr>
+            <tr><td>Body</td><td>16px / 1.6–1.8</td><td>標準本文</td></tr>
+            <tr><td>Small</td><td>13–14px / 1.5</td><td>補助情報のみ</td></tr>
+          </tbody>
+        </table>
+        <ul>
+          <li>本文の標準サイズは16px相当を基準にする。</li>
+          <li>見出し階層は視覚サイズではなく文書構造に従う。</li>
+          <li>日本語の長文は行長35〜45文字程度を目安にし、極端な横長を避ける。</li>
+          <li>数字を比較するUIではtabular numeralsを検討する。</li>
+        </ul>
+
+        <h3>4.3 Spacing</h3>
+        <p>基本単位は4px。主要スケールは <code>4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96</code>。同じ階層には同じ余白を使い、意味の近さを余白で表現する。</p>
+
+        <h3>4.4 Radius / Border / Elevation</h3>
+        <ul>
+          <li>Radiusは <code>4 / 8 / 12 / 16 / full</code> 程度に限定し、用途で使い分ける。</li>
+          <li>境界表現は「余白 → 背景差 → Border → Shadow」の順に、必要最小限を選ぶ。</li>
+          <li>Elevationは階層を意味するときだけ使う。Shadowを装飾として乱用しない。</li>
+        </ul>
+
+        <h3>4.5 Iconography</h3>
+        <ul>
+          <li>アイコンのみの操作にはアクセシブルネームと必要に応じてTooltipを付ける。</li>
+          <li>アイコンの線幅・ViewBox・光学サイズを揃える。</li>
+          <li>独自アイコンを作る前に既存セットで意味が表せないか確認する。</li>
+        </ul>
+
+        <h3>4.6 Motion</h3>
+        <ul>
+          <li>Motionの目的は「状態変化・位置関係・因果関係」を説明すること。</li>
+          <li>標準Durationは100〜250ms、複雑な遷移でも400ms以内を基本とする。</li>
+          <li><code>prefers-reduced-motion</code> を尊重し、不要な移動・点滅・自動再生を抑制する。</li>
+        </ul>
+      </section>
+
+      <section id="layout">
+        <h2>5. レイアウト</h2>
+        <h3>5.1 情報階層</h3>
+        <p>ページは「Global → Page → Section → Component → Element」の階層で設計する。見た目のグルーピングとDOMの意味構造を可能な限り一致させる。</p>
+
+        <h3>5.2 Grid</h3>
+        <ul>
+          <li>Desktopは12-columnを標準候補とするが、コンテンツ用途に応じて固定しない。</li>
+          <li>本文コンテンツには最大幅を設ける。画面が広いほど行を長くする設計は避ける。</li>
+          <li>左右余白はViewportに応じて可変にする。</li>
+          <li>カードの列数ではなく「カードが読める最小幅」を基準に折り返す。</li>
+        </ul>
+
+        <h3>5.3 Page Types</h3>
+        <div class="grid">
+          <div class="card"><h4>Content Page</h4><p>記事、ヘルプ、ガイド。読解性・見出し構造・目次を優先。</p></div>
+          <div class="card"><h4>List / Search</h4><p>検索、絞り込み、並び替え、結果件数、空状態を一体設計。</p></div>
+          <div class="card"><h4>Detail</h4><p>対象の識別情報、主要アクション、属性、関連情報の順に配置。</p></div>
+          <div class="card"><h4>Dashboard</h4><p>KPIを「重要度順」に配置し、色ではなくラベルと比較軸を明示。</p></div>
+          <div class="card"><h4>Form / Wizard</h4><p>入力目的、進捗、保存、エラー回復を中心に設計。</p></div>
+          <div class="card"><h4>Marketing / LP</h4><p>価値提案、根拠、詳細、CTAの順で情報を積み上げる。</p></div>
+        </div>
+      </section>
+
+      <section id="responsive">
+        <h2>6. レスポンシブ / Adaptive</h2>
+        <div class="rule">
+          <strong>Breakpointはデバイス名ではなく「レイアウトが破綻する点」で決める。</strong>
+          Mobile / Tablet / Desktopという分類はテスト管理には使えるが、CSS設計の唯一の根拠にはしない。
+        </div>
+        <ul>
+          <li><span class="status must">MUST</span> 横スクロールを主要な閲覧方法にしない。例外は表・タイムライン等、意味的に横方向が必要なUI。</li>
+          <li><span class="status must">MUST</span> 文字拡大や狭幅でも主要機能と情報を失わない。</li>
+          <li><span class="status should">SHOULD</span> Desktopの情報を単に非表示にせず、優先度に応じて折りたたみ・別導線・詳細化を使う。</li>
+          <li><span class="status should">SHOULD</span> Hover前提の情報や操作を作らない。</li>
+          <li><span class="status should">SHOULD</span> Touchでは操作領域を十分に確保し、隣接操作の誤タップを避ける。</li>
+        </ul>
+      </section>
+
+      <section id="components">
+        <h2>7. コンポーネント</h2>
+        <p class="lead">コンポーネントは「見た目の部品」ではなく、意味・状態・振る舞い・アクセシビリティを含む契約である。</p>
+
+        <h3>7.1 必須状態</h3>
+        <p>Interactive componentは該当する範囲で <code>default / hover / focus-visible / active / selected / disabled / loading / error / success</code> を定義する。</p>
+
+        <h3>7.2 各コンポーネントで必ず定義する項目</h3>
+        <ul>
+          <li>Purpose — 何を解決するか</li>
+          <li>When to use / When not to use</li>
+          <li>Anatomy — 構成要素</li>
+          <li>Variants / Sizes / States</li>
+          <li>Behavior — マウス、タッチ、キーボード</li>
+          <li>Content — ラベル、長さ、文体</li>
+          <li>Accessibility — Name / Role / Value / Focus / Keyboard</li>
+          <li>Responsive behavior</li>
+          <li>Design Tokens</li>
+          <li>Code API / Props</li>
+          <li>Test cases</li>
+        </ul>
+
+        <h3>7.3 標準コンポーネントセット</h3>
+        <p>Button、Link、Icon Button、Input、Textarea、Select、Checkbox、Radio、Switch、Search、Tabs、Accordion、Disclosure、Dialog、Drawer、Tooltip、Popover、Toast、Alert、Breadcrumb、Pagination、Table、Card、Badge、Tag、Avatar、Progress、Skeleton、Empty State、File Upload、Date/Time、Navigationを基本セットとする。</p>
+
+        <div class="rule">
+          <strong>新規コンポーネントを追加する条件</strong>
+          既存コンポーネントのVariantで表現できず、複数画面で再利用され、独自の意味・振る舞い・アクセシビリティ要件を持つ場合に限る。
+        </div>
+      </section>
+
+      <section id="patterns">
+        <h2>8. UXパターン</h2>
+        <p>コンポーネント単体ではなく、ユーザーのタスク単位で標準パターンを定義する。</p>
+        <div class="grid">
+          <div class="card"><h4>Loading</h4><p>処理の存在を即時に知らせる。長時間処理は進捗・キャンセル・バックグラウンド化を検討する。</p></div>
+          <div class="card"><h4>Empty State</h4><p>「何もない」だけで終わらせず、理由と次にできることを示す。</p></div>
+          <div class="card"><h4>Error Recovery</h4><p>何が起きたか、何が保持されたか、次に何をすればよいかを示す。</p></div>
+          <div class="card"><h4>Destructive Action</h4><p>削除等は影響範囲を明示。取り消し可能ならUndoを確認Dialogより優先検討する。</p></div>
+          <div class="card"><h4>Search & Filter</h4><p>現在条件、結果件数、条件解除を明確にする。0件時に回復手段を提示する。</p></div>
+          <div class="card"><h4>Permission</h4><p>権限不足を「利用不可」で終わらせず、必要権限と取得方法を説明する。</p></div>
+        </div>
+      </section>
+
+      <section id="forms">
+        <h2>9. フォーム</h2>
+        <ul>
+          <li><span class="status must">MUST</span> 全入力欄に視覚ラベルを用意する。Placeholderをラベル代わりにしない。</li>
+          <li><span class="status must">MUST</span> 必須・任意の表現ルールを一貫させる。</li>
+          <li><span class="status must">MUST</span> エラーは該当項目の近くに表示し、入力内容を原則保持する。</li>
+          <li><span class="status must">MUST</span> エラーの存在だけでなく、修正方法を伝える。</li>
+          <li><span class="status should">SHOULD</span> ユーザーが知っている順・自然な順に質問する。</li>
+          <li><span class="status should">SHOULD</span> 同じ情報を再入力させない。</li>
+          <li><span class="status should">SHOULD</span> 入力形式は可能な範囲でシステム側が吸収する。</li>
+          <li><span class="status should">SHOULD</span> 長いフォームは意味のある単位で分割し、進捗と保存状態を示す。</li>
+        </ul>
+
+        <h3>エラーメッセージの型</h3>
+        <p><strong>対象 + 問題 + 解決方法</strong> の順で書く。「入力エラーです」のような抽象表現だけで終わらせない。</p>
+      </section>
+
+      <section id="content">
+        <h2>10. UXライティング / Voice & Tone</h2>
+        <h3>10.1 Voice</h3>
+        <p>基本人格は「明確・誠実・簡潔・落ち着き」。ユーザーを責めない。システム内部用語をそのまま出さない。</p>
+
+        <h3>10.2 UI Text</h3>
+        <ul>
+          <li>Buttonは可能な限り動詞で始め、結果を予測できるラベルにする。</li>
+          <li>見出しは内容を要約し、「お知らせ」「情報」のような抽象語だけにしない。</li>
+          <li>確認Dialogは「本当に〜しますか？」より、対象・結果・不可逆性を具体的に書く。</li>
+          <li>同一概念には同一用語を使用する。類義語を装飾目的で使い分けない。</li>
+          <li>専門用語は対象ユーザーが日常的に使う場合のみ採用し、必要なら説明する。</li>
+          <li>エラーや空状態は次のアクションまで書く。</li>
+        </ul>
+
+        <h3>10.3 Content Design</h3>
+        <p>情報量を増やす前に、ユーザーが「この瞬間に必要な情報」を特定する。重要情報はProgressive Disclosureで隠しすぎない。</p>
+      </section>
+
+      <section id="accessibility">
+        <h2>11. アクセシビリティ</h2>
+        <div class="rule">
+          <strong>標準品質: WCAG 2.2 Level AAを基準とする。</strong>
+          チェックリストを最後に回すのではなく、Design Token、Component、Pattern、Code Review、QAへ組み込む。
+        </div>
+
+        <h3>11.1 Perceivable</h3>
+        <ul>
+          <li>意味のある画像には適切な代替テキストを付け、装飾画像は支援技術から除外する。</li>
+          <li>色だけで状態・必須・成功・エラーを伝えない。</li>
+          <li>テキストと重要UIのコントラストを検証する。</li>
+          <li>字幕・トランスクリプトなど、メディアの代替手段を用意する。</li>
+        </ul>
+
+        <h3>11.2 Operable</h3>
+        <ul>
+          <li>全機能をキーボードだけで操作可能にする。</li>
+          <li>Focus indicatorを消さない。現在位置が視覚的に分かるようにする。</li>
+          <li>Drag、Swipe、Hoverのみに依存しない代替操作を用意する。</li>
+          <li>Focus trapはModal等、必要な文脈だけで使う。</li>
+        </ul>
+
+        <h3>11.3 Understandable</h3>
+        <ul>
+          <li>ナビゲーション・ボタン・入力の意味を一貫させる。</li>
+          <li>入力で突然大きな画面変化を起こさない。</li>
+          <li>エラー位置と修正方法を具体的に伝える。</li>
+        </ul>
+
+        <h3>11.4 Robust</h3>
+        <ul>
+          <li>まずSemantic HTMLを使い、ARIAは不足する意味を補うために使う。</li>
+          <li>Name / Role / Value / Stateが支援技術へ正しく伝わることをテストする。</li>
+          <li>DOM順序と視覚順序を不必要に逆転させない。</li>
+        </ul>
+      </section>
+
+      <section id="interaction">
+        <h2>12. インタラクション</h2>
+        <h3>12.1 Feedback</h3>
+        <p>ユーザー操作には遅延なくフィードバックを返す。保存・送信・削除・コピー等は成功したかどうかを明示する。</p>
+
+        <h3>12.2 Focus</h3>
+        <p>画面遷移、Dialog、動的追加、エラー発生後に「次に操作すべき位置」へ自然にフォーカスを移す。ただしユーザーの文脈を奪う自動移動は避ける。</p>
+
+        <h3>12.3 Disabled vs Read-only</h3>
+        <p>Disabledは理由が分からなくなりやすい。利用条件を説明できるなら、操作可能状態のまま理由を返す、または補助説明を添える。閲覧のみ可能ならRead-onlyを使う。</p>
+
+        <h3>12.4 Optimistic UI</h3>
+        <p>失敗時に安全にロールバックできる操作では、即時反映を検討する。金銭・権限・不可逆操作ではサーバー確定前の成功表示を避ける。</p>
+      </section>
+
+      <section id="data">
+        <h2>13. データ表現 / Visualization</h2>
+        <ul>
+          <li>比較が主目的ならCardの羅列よりTableを検討する。</li>
+          <li>Chartは「グラフを置く」ことが目的ではなく、比較・傾向・構成・分布など質問に答えるために使う。</li>
+          <li>凡例だけに依存せず、可能ならデータへ直接ラベルする。</li>
+          <li>色覚差を考慮し、色以外の識別要素を持つ。</li>
+          <li>0起点が意味を持つ棒グラフなど、視覚的誤解を生む軸操作を避ける。</li>
+          <li>数値の単位、期間、母数、更新時刻を必要に応じて明記する。</li>
+        </ul>
+      </section>
+
+      <section id="implementation">
+        <h2>14. 実装標準</h2>
+        <h3>14.1 Design Tokens</h3>
+        <pre><code>:root {
+  --color-text-primary: ...;
+  --color-surface-default: ...;
+  --color-action-primary: ...;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --radius-control: ...;
+  --motion-duration-fast: ...;
+}</code></pre>
+        <ul>
+          <li>Figma上の変数とコードのToken名・意味を可能な限り一致させる。</li>
+          <li>コンポーネント内にブランド色やpx値を直接散在させない。</li>
+          <li>Primitive Tokenを画面実装から直接参照しすぎず、Semantic Tokenを介する。</li>
+        </ul>
+
+        <h3>14.2 HTML / CSS / JS</h3>
+        <ul>
+          <li>Native HTMLで表現できる要素はNativeを優先する。</li>
+          <li>見た目の都合でbuttonとlinkの意味を入れ替えない。</li>
+          <li>JavaScriptなしでも最低限のコンテンツ意味構造が保たれることを目指す。</li>
+          <li>LayoutはFlexbox / Gridを基本とし、絶対位置依存を最小化する。</li>
+          <li>状態はCSS classだけでなくDOM属性・ARIA stateと整合させる。</li>
+        </ul>
+
+        <h3>14.3 Component API</h3>
+        <ul>
+          <li>Propsは視覚的実装名ではなく意味で設計する。</li>
+          <li><code>variant="danger"</code> のようなSemantic APIを優先し、<code>red=true</code> のような表現を避ける。</li>
+          <li>アクセシビリティに必要な属性を利用者へ丸投げしない。</li>
+        </ul>
+
+        <h3>14.4 Performance</h3>
+        <ul>
+          <li>画像は用途に適した形式・サイズで配信し、レイアウトシフトを防ぐ。</li>
+          <li>Web Fontは必要なウェイトに限定し、Fallbackを定義する。</li>
+          <li>重要UIを巨大なJSの読み込み完了まで操作不能にしない。</li>
+        </ul>
+      </section>
+
+      <section id="quality">
+        <h2>15. 品質保証</h2>
+        <p>品質は「デザインレビューだけ」で担保しない。複数レイヤーで検証する。</p>
+        <table>
+          <thead><tr><th>Layer</th><th>検証</th></tr></thead>
+          <tbody>
+            <tr><td>Design</td><td>原則、情報設計、コンポーネント、状態、レスポンシブ、アクセシビリティ</td></tr>
+            <tr><td>Content</td><td>用語、一貫性、理解性、CTA、エラー、空状態</td></tr>
+            <tr><td>Code</td><td>Semantic HTML、ARIA、Token、型、Lint、Component API</td></tr>
+            <tr><td>Visual</td><td>Storybook、Visual Regression、テーマ、Viewport</td></tr>
+            <tr><td>Interaction</td><td>Keyboard、Focus、Pointer、Touch、Loading、Error</td></tr>
+            <tr><td>Accessibility</td><td>自動検査 + Keyboard + Screen Readerによる手動確認</td></tr>
+            <tr><td>User</td><td>ユーザビリティテスト、問い合わせ、行動データ</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="governance">
+        <h2>16. 運用・ガバナンス</h2>
+        <h3>16.1 Component Lifecycle</h3>
+        <p><code>Proposal → Experimental → Stable → Deprecated → Removed</code> の状態を持つ。Breaking Changeには移行方法と期限を付ける。</p>
+
+        <h3>16.2 変更提案に必要な情報</h3>
+        <ul>
+          <li>解決したいユーザー課題</li>
+          <li>既存ルールで解決できない理由</li>
+          <li>利用画面・ユースケース</li>
+          <li>Accessibilityへの影響</li>
+          <li>Responsive / Themeへの影響</li>
+          <li>実装APIとTokenへの影響</li>
+          <li>移行コスト</li>
+          <li>検証結果・ユーザー調査</li>
+        </ul>
+
+        <h3>16.3 Versioning</h3>
+        <ul>
+          <li>PATCH: 表記修正、互換性のある微修正</li>
+          <li>MINOR: 新Component、Variant、Pattern</li>
+          <li>MAJOR: Token削除、API変更、見た目や動作の大規模変更</li>
+        </ul>
+
+        <h3>16.4 例外管理</h3>
+        <p>例外は「その場限りのCSS」ではなく記録する。理由、影響範囲、期限、標準へ戻す条件を残す。</p>
+      </section>
+
+      <section id="definition-of-done">
+        <h2>17. Definition of Done</h2>
+        <p>以下を満たして初めて「デザイン完了」とする。</p>
+        <ul class="checklist">
+          <li>ページのユーザー目的が一文で説明できる</li>
+          <li>主要アクションと情報優先度が明確</li>
+          <li>既存Component / Patternを優先している</li>
+          <li>Loading / Empty / Error / Success / Disabled等の状態が定義済み</li>
+          <li>Mobile〜Wide screenまで破綻しない</li>
+          <li>200% Zoom、Keyboard、Focus orderを考慮済み</li>
+          <li>見出し構造・ランドマーク・ラベルが設計済み</li>
+          <li>Color contrastと色以外の識別方法を確認済み</li>
+          <li>UIテキスト・エラーメッセージ・空状態が完成している</li>
+          <li>実装TokenとFigmaの意味が一致している</li>
+          <li>破壊的操作・権限・個人情報の扱いを確認済み</li>
+          <li>分析イベント・ログ・成功指標が必要なら定義済み</li>
+          <li>自動アクセシビリティテストだけでなく手動操作も確認済み</li>
+          <li>変更理由・仕様・利用方法がドキュメント化されている</li>
+        </ul>
+      </section>
+
+      <section id="component-template">
+        <h2>18. コンポーネント仕様書テンプレート</h2>
+        <p>新規Componentは以下の章立てを標準とする。デザインとコードの仕様書を分けず、同じ情報構造を共有する。</p>
+        <ol>
+          <li><strong>Overview</strong> — 役割を1〜3文で説明</li>
+          <li><strong>When to use</strong> — 適切なユースケース</li>
+          <li><strong>When not to use</strong> — 代替Componentを提示</li>
+          <li><strong>Anatomy</strong> — 必須・任意パーツ</li>
+          <li><strong>Variants</strong> — 意味の違いを説明</li>
+          <li><strong>States</strong> — Default / Hover / Focus / Active / Disabled / Loading / Error...</li>
+          <li><strong>Layout & Spacing</strong> — サイズ、配置、余白</li>
+          <li><strong>Responsive</strong> — 狭幅・Touch・Text resize</li>
+          <li><strong>Content</strong> — Label、文体、文字数、禁止表現</li>
+          <li><strong>Behavior</strong> — Pointer / Keyboard / Focus / Dynamic update</li>
+          <li><strong>Accessibility</strong> — Semantics、ARIA、Screen reader、Contrast</li>
+          <li><strong>Tokens</strong> — 利用するSemantic / Component Token</li>
+          <li><strong>Code API</strong> — Props、Events、Slots</li>
+          <li><strong>Examples</strong> — Do / Don'tではなく理由が分かる使用例</li>
+          <li><strong>Tests</strong> — Unit / Interaction / Visual / Accessibility</li>
+          <li><strong>Changelog</strong> — Breaking changeとMigration</li>
+        </ol>
+      </section>
+
+      <section id="source-matrix">
+        <h2>19. 43資料から統合した観点</h2>
+        <p class="lead">
+          リポジトリの「デザイン定義書」一覧に登録している43資料を、コピーするのではなく、
+          それぞれの強みを本標準の設計観点へ再構成した。
+        </p>
+
+        <table class="source-matrix">
+          <thead><tr><th>参照体系</th><th>本定義書へ取り込んだ観点</th></tr></thead>
+          <tbody>
+            <tr><td>デジタル庁 DADS</td><td>アクセシビリティをComponent仕様へ統合する考え方、Design/Figma/Code/Storybookをつなぐ構造。</td></tr>
+            <tr><td>デジタル庁 スタイルガイド</td><td>プロジェクト固有ルールをDesign Systemの上位・下位関係として整理する考え方。</td></tr>
+            <tr><td>Science Tokyo Webスタイルガイド</td><td>Webサイト固有のToken・Component・ページ設計を同一ドキュメントで扱う構造。</td></tr>
+            <tr><td>e-Gov デザインガイドライン</td><td>情報設計からUIパターンまでを連続した設計対象として扱う観点。</td></tr>
+            <tr><td>東京都 Webガイドライン</td><td>多数ページ・多数運用者でも品質を保てるWeb運用標準という観点。</td></tr>
+            <tr><td>SmartHR Design System</td><td>人格→基本要素→Product/Accessibility/Communicationの階層、UX Writing、品質チェック。</td></tr>
+            <tr><td>Ameba Spindle</td><td>Design PrinciplesとVisual FoundationをComponentへ一貫して反映する構造。</td></tr>
+            <tr><td>Serendie Design System</td><td>Design Tokens、Figma、実装Component、Storybookを一つのシステムとして扱う思想。</td></tr>
+            <tr><td>Ubie Vitals</td><td>Token、Layout、Componentを実装へ直結させるDeveloper-friendlyな設計。</td></tr>
+            <tr><td>IKYU Design Guideline</td><td>サービス固有の体験とビジュアル品質をWebガイドとして保つ観点。</td></tr>
+            <tr><td>Pepabo Design</td><td>複数サービスを束ねるBrand / Product基盤と共通Tokenの考え方。</td></tr>
+            <tr><td>pixiv Charcoal</td><td>Theme、React、Icon、Storybookまで含める実装主導のDesign System。</td></tr>
+            <tr><td>freee vibes</td><td>業務Web UIで再利用可能なComponentをコード資産として提供する考え方。</td></tr>
+            <tr><td>LINE Design System</td><td>Foundation、UX Guideline、Component、Writingを横断する設計範囲。</td></tr>
+            <tr><td>PayPay App Style Guide</td><td>Philosophy → Global Rule → UI Partsの上位原則から具体へ落とす構造。</td></tr>
+            <tr><td>LYZON Design System</td><td>コーポレートWebのStyleとComponentを明文化する実務的な構成。</td></tr>
+            <tr><td>D-EXPERIENCE DESIGN SYSTEM</td><td>UI以前のUXプロセスとPrinciplesを設計標準へ含める観点。</td></tr>
+            <tr><td>Sparkle Design</td><td>Foundation / Theme / Component / Patternの明確なレイヤリング。</td></tr>
+            <tr><td>Myセブン銀行 Design System</td><td>Tone & MannerとTypography/Color/Spacing/UIを一体化する観点。</td></tr>
+            <tr><td>Francfranc Design System Guidelines</td><td>Brand IdentityとWeb Design・情報設計を分離しない考え方。</td></tr>
+            <tr><td>co-nect Brand Guideline</td><td>Brand GuidelineにもUI PartsとVoice & Toneを含める観点。</td></tr>
+            <tr><td>揚羽 Brand Guidelines</td><td>Purpose / Mission / VisionからVisual Rulesへ落とすブランド起点の構造。</td></tr>
+            <tr><td>ソシオメディア Human Interface Guidelines</td><td>見た目よりModel / Interaction / Presentationを重視するHuman Interface視点。</td></tr>
+            <tr><td>ハリマニックス WEB制作ガイドライン</td><td>Web制作全体の品質基準としてガイドラインを使う考え方。</td></tr>
+            <tr><td>フェニックスデザイン 制作ガイドライン</td><td>設計だけでなく制作フローと要求事項まで標準化する観点。</td></tr>
+            <tr><td>Chatwork Brand Design System</td><td>Brandの一貫性をデジタル接点全体へ展開する考え方。</td></tr>
+            <tr><td>BlueAI Design System</td><td>複数Productに跨る共通UIと再利用性を重視する設計。</td></tr>
+            <tr><td>Rabee UI</td><td>Figma VariablesとFrontend implementationを同期する構造。</td></tr>
+            <tr><td>GitHub Primer</td><td>Foundation / Component / Pattern / Accessibility / Contentを開発者向けに統合する構造。</td></tr>
+            <tr><td>Atlassian Design System</td><td>Semantic TokensとContent Designを大規模Product群で統一する発想。</td></tr>
+            <tr><td>Material Design</td><td>State、Motion、Layout、Adaptive UIを体系として扱う考え方。</td></tr>
+            <tr><td>IBM Carbon Design System</td><td>複雑な業務UIとData VisualizationまでDesign Systemの対象にする観点。</td></tr>
+            <tr><td>Microsoft Fluent 2</td><td>Theme、Token、Layout、Platform差をSemantic layerで吸収する思想。</td></tr>
+            <tr><td>Adobe Spectrum 2</td><td>視覚品質だけでなくAccessibilityとContentをComponent品質へ統合する観点。</td></tr>
+            <tr><td>Shopify Polaris</td><td>Commerce taskを中心にContent / Pattern / Componentを設計する考え方。</td></tr>
+            <tr><td>Salesforce Lightning Design System</td><td>Enterprise UIでDesign TokenとComponent APIを標準化する観点。</td></tr>
+            <tr><td>GOV.UK Design System</td><td>User researchでPatternを検証し、実証されていない慣習を標準化しない姿勢。</td></tr>
+            <tr><td>U.S. Web Design System</td><td>公共WebでのAccessibility、Trust、Consistency、Reusable Patternの考え方。</td></tr>
+            <tr><td>NHS Design System</td><td>高い理解性が必要なサービスでPlain languageとTask patternを優先する視点。</td></tr>
+            <tr><td>Apple Human Interface Guidelines</td><td>Platform convention、入力方法、Feedback、Clarityを重視するHuman Interface原則。</td></tr>
+            <tr><td>Ant Design</td><td>Enterprise Webでの情報密度、Form、Table、状態設計の体系化。</td></tr>
+            <tr><td>SAP Fiori Design Guidelines</td><td>Responsive / Adaptive、Floorplan、業務タスク単位のPage Patternという考え方。</td></tr>
+            <tr><td>WAI-ARIA Authoring Practices Guide</td><td>Custom widgetのKeyboard interaction、Role / State / Propertyを仕様として定義する基準。</td></tr>
+          </tbody>
+        </table>
+
+        <h3>本定義書が最終的に採用した統合構造</h3>
+        <p><strong>Principles → Foundations → Components → Patterns → Content → Accessibility → Implementation → Quality → Governance</strong></p>
+        <p>
+          この順序にすることで、ブランドだけ、Figmaだけ、Component Libraryだけ、アクセシビリティチェックだけ、
+          といった部分最適を避け、企画から運用まで同じ判断体系を利用できる。
+        </p>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>Unified Web Design Standard v1.0.0 — Living Standard. ルールはユーザー調査・実装知見・アクセシビリティ検証に基づいて更新する。</p>
+  </footer>
+</body>
+</html>
