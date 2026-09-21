@@ -1,4 +1,5 @@
 const guidelineSites = [
+  { name: 'Unified Web Design Standard', url: './design-guideline.html', description: '国内外43の公開デザインシステム・Webガイドラインの長所を統合した独自Webデザイン定義書。原則、Tokens、UI、UX、アクセシビリティ、実装、QA、運用までを一体化。', categories: ['日本', '公開ガイド', 'デザインシステム', 'Web', 'UI/UX', '実装', 'アクセシビリティ'] },
   { name: 'デジタル庁 DADS', url: 'https://design.digital.go.jp/dads/', description: 'デジタル庁の公開デザインシステム。デザイントークン、コンポーネント、アクセシビリティを体系化。', categories: ['日本', '公開ガイド', 'デザインシステム', 'Web'] },
   { name: 'デジタル庁 スタイルガイド', url: 'https://design.digital.go.jp/dads/guidance/style-guides/', description: '個別Webサイトのスタイルガイドをどう定義・運用するかを説明。', categories: ['日本', '公開ガイド', 'Web', 'UI/UX'] },
   { name: 'Science Tokyo Webスタイルガイド', url: 'https://design-system.isct.ac.jp/ja/website/style-guide', description: 'デザイントークン、UIコンポーネント、ページパターン、デザインリソースを公開。', categories: ['日本', '公開ガイド', 'デザインシステム', 'Web', 'Figma'] },
