@@ -17,6 +17,7 @@
   color: var(--muted);
   font-size: 13px;
   font-weight: 700;
+  white-space: nowrap;
   cursor: pointer;
   transition: .16s ease;
 }
@@ -40,9 +41,11 @@
   .resource-tabs {
     order: 3;
     width: 100%;
+    overflow-x: auto;
   }
 
   .resource-tab {
-    flex: 1;
+    flex: 1 0 auto;
+    padding: 0 10px;
   }
 }

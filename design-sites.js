@@ -46,6 +46,8 @@ const designSites = [
 const designCategories = ['すべて', 'SaaS', 'Webアプリ', 'Dashboard', 'UIパターン', 'UXフロー', 'LP', 'Webサイト', '日本', '海外', 'EC', 'タイポグラフィ', 'アワード'];
 const loadedGuidelineSites = typeof guidelineSites === 'undefined' ? [] : guidelineSites;
 const loadedGuidelineCategories = typeof guidelineCategories === 'undefined' ? ['すべて'] : guidelineCategories;
+const loadedUiComponentSites = typeof uiComponentSites === 'undefined' ? [] : uiComponentSites;
+const loadedUiComponentCategories = typeof uiComponentCategories === 'undefined' ? ['すべて'] : uiComponentCategories;
 const modeState = { current: 'icons' };
 
 const modeConfig = {
@@ -72,6 +74,14 @@ const modeConfig = {
     searchPlaceholder: '定義書名・企業名・特徴で検索…',
     previewPrompt: 'デザイン定義書を選択してください',
     emptyTitle: '左の一覧からデザイン定義書を選択'
+  },
+  components: {
+    sites: loadedUiComponentSites,
+    categories: loadedUiComponentCategories,
+    eyebrow: 'UI COMPONENT DIRECTORY',
+    searchPlaceholder: 'コンポーネント名・特徴で検索…',
+    previewPrompt: 'UIコンポーネントサイトを選択してください',
+    emptyTitle: '左の一覧からUIコンポーネントサイトを選択'
   }
 };
 

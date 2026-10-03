@@ -1,0 +1,30 @@
+const uiComponentSites = [
+  { name: 'Kobra', url: 'https://kobra.systems/', description: 'UIに洗練されたインタラクションを追加するための美しいReactコンポーネント。', categories: ['React', 'コンポーネント', 'インタラクション'] },
+  { name: 'Beautiful UI', url: 'https://beautifului.dev/', description: '複雑なインターフェースを楽に感じさせるAIネイティブUIコンポーネント。', categories: ['コンポーネント', 'AI'] },
+  { name: 'Kinetics', url: 'https://kinetics.colorion.co/', description: 'インターフェースに命を吹き込む153のスプリング駆動アニメーション。', categories: ['アニメーション', 'インタラクション'] },
+  { name: 'BeUI', url: 'https://beui.dev/', description: '次のプロジェクトにそのままドロップできるアニメーション付きReactコンポーネント。', categories: ['React', 'コンポーネント', 'アニメーション'] },
+  { name: 'Transitions.dev', url: 'https://transitions.dev/', description: 'モダンなインターフェース向けに構築されたスムーズなUIトランジション。', categories: ['アニメーション', 'トランジション'] },
+  { name: 'Astryx', url: 'https://astryx.atmeta.com/', description: 'モダンなプロダクトのための洗練されたUIパターンコレクション。', categories: ['UIパターン', 'コンポーネント'] },
+  { name: 'Evil Charts', url: 'https://evilcharts.com/', description: 'データをもっと面白く見せるアニメーション付きチャート。', categories: ['チャート', 'アニメーション', 'コンポーネント'] },
+  { name: 'Reverse UI', url: 'https://reverseui.com/', description: 'モダンなウェブアプリ向けプレミアムアニメーションUIコンポーネント。', categories: ['コンポーネント', 'アニメーション'] },
+  { name: 'Scrolltide', url: 'https://scrolltide.co/', description: '3D・スクロール駆動・シネマティックなWebサイト向けの200以上の完全なビルドプロンプト。Claude CodeやCursorに貼るだけでアニメーションサイトを構築できる。', categories: ['プロンプト', 'アニメーション', 'Webサイト'] },
+  { name: 'designmd.ai', url: 'https://designmd.ai/', description: 'エージェントが読めるマークダウン形式のデザインシステム。', categories: ['AI', 'デザインシステム'] },
+  { name: 'Vibe Prompts', url: 'https://vibeprompts.dev/', description: 'ダッシュボードとランディングページ向けの完成プロンプト。', categories: ['プロンプト', 'Dashboard', 'LP'] },
+  { name: 'Minimal Gallery', url: 'https://minimal.gallery/', description: '厳選された高級感のあるミニマルなWebサイト集。', categories: ['ギャラリー', 'Webサイト'] },
+  { name: 'Kage', url: 'https://kage.design/', description: '実際のUIインスピレーションをプロンプトにマッピング。', categories: ['プロンプト', 'ギャラリー', 'AI'] },
+  { name: 'Refero Styles', url: 'https://styles.refero.design/', description: 'タイポグラフィ付きの2,000以上の実際のプロダクトスタイル。', categories: ['ギャラリー', 'タイポグラフィ', 'デザインシステム'] },
+  { name: 'Component Gallery', url: 'https://component.gallery/', description: 'トップデザインシステムが同じ要素をどう解決しているかの2,600以上の例。', categories: ['ギャラリー', 'コンポーネント', 'デザインシステム'] },
+  { name: 'Appshot Gallery', url: 'https://appshot.gallery/', description: 'モバイル向けの実際のアプリスクリーンショット。', categories: ['ギャラリー', 'モバイル'] },
+  { name: 'Navbar Gallery', url: 'https://navbar.gallery/', description: 'ナビゲーションパターン集。', categories: ['ギャラリー', 'UIパターン'] },
+  { name: 'Footer Design', url: 'https://footer.design/', description: 'フッターレイアウト集。', categories: ['ギャラリー', 'UIパターン'] },
+  { name: 'CTA Gallery', url: 'https://cta.gallery/', description: 'コンバージョンテスト済みのフォーム、ポップアップ、ボタン。', categories: ['ギャラリー', 'UIパターン'] },
+  { name: '21st.dev', url: 'https://21st.dev/', description: 'MCP経由でエージェントにプラグインできるコンポーネントレジストリ。', categories: ['コンポーネント', 'React', 'AI'] },
+  { name: 'shadcn/ui', url: 'https://ui.shadcn.com/', description: '依然としてゴールドスタンダードのReactコンポーネント集。', categories: ['コンポーネント', 'React'] },
+  { name: 'Aceternity UI', url: 'https://ui.aceternity.com/', description: '200以上のアニメーション付きReactおよびTailwindコンポーネント。', categories: ['コンポーネント', 'React', 'アニメーション'] },
+  { name: 'Magic UI', url: 'https://magicui.design/', description: 'アニメーションコンポーネント集。', categories: ['コンポーネント', 'React', 'アニメーション'] },
+  { name: 'Motion Primitives', url: 'https://motion-primitives.com/', description: '高度なインタラクションを実現するコンポーネント。', categories: ['コンポーネント', 'React', 'インタラクション'] },
+  { name: 'Uiverse', url: 'https://uiverse.io/', description: 'オープンソースのUI要素集。', categories: ['コンポーネント', 'オープンソース'] },
+  { name: 'mapcn', url: 'https://mapcn.dev/', description: 'マップコンポーネント、マーカー、ルート表示など。', categories: ['コンポーネント', 'マップ'] }
+];
+
+const uiComponentCategories = ['すべて', 'コンポーネント', 'React', 'アニメーション', 'インタラクション', 'トランジション', 'UIパターン', 'プロンプト', 'AI', 'ギャラリー', 'デザインシステム', 'Webサイト', 'LP', 'Dashboard', 'モバイル', 'タイポグラフィ', 'チャート', 'マップ', 'オープンソース'];
